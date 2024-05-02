@@ -1,0 +1,112 @@
+<!-- W1863171 - Chloe Carson -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration - GP Surgery</title>
+    <link rel="stylesheet" href="css/govuk-frontend-5.3.1.min.css">
+</head>
+<body class="govuk-template__body">
+    <header class="govuk-header" role="banner" data-module="header">
+        <div class="govuk-header__container govuk-width-container">
+            <div class="govuk-header__logo">
+                <a href="index.html" class="govuk-header govuk-header__link--homepage">
+                    <span class="govuk-header__logotype">
+                        <img src="assets/images/govuk-icon-180.png" alt="GOV.UK">
+                    </span>
+                    <span class="govuk-header__logotype-text">Westminster GP Surgery</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+        <div class="govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <h1 class="govuk-heading-xl">Patient Registration</h1>
+                    <!-- Patient registration form -->
+                    <form class="govuk-form" action="javascript:void(0);" method="post" id="registration-form" onsubmit="submitForm()">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="nhs-number">NHS Number</label>
+                            <input class="govuk-input" id="nhs-number" name="nhs-number" type="text" required>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="forename">Forename</label>
+                            <input class="govuk-input" id="forename" name="forename" type="text" required>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="surname">Surname</label>
+                            <input class="govuk-input" id="surname" name="surname" type="text" required>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="dob">Date of Birth</label>
+                            <input class="govuk-input" id="dob" name="dob" type="date" required>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="gender">Gender</label>
+                            <select class="govuk-select" id="gender" name="gender" required>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="address">Address</label>
+                            <input class="govuk-input" id="address" name="address" type="text" required>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="postcode">Postcode</label>
+                            <input class="govuk-input" id="postcode" name="postcode" type="text" required>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="mobile">Mobile Number</label>
+                            <input class="govuk-input" id="mobile" name="mobile" type="text" required>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="password">Password</label>
+                            <input class="govuk-input" id="password" name="password" type="password" required>
+                        </div>
+                        <button class="govuk-button" type="submit">Register</button>
+                    </form>
+                    <div id="registration-message"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function submitForm() {
+                // Get form data
+                var formData = new FormData(document.getElementById("registration-form"));
+
+                // Create AJAX request
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "backend/register.php", true);
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        // Display response message
+                        document.getElementById("registration-message").innerHTML = xhr.responseText;
+                        // Check if registration was successful
+                        if (xhr.responseText.includes("Registration successful.")) {
+                            // Redirect to login page after a delay
+                            setTimeout(function () {
+                                window.location.href = "patient-login.html";
+                            }, 2000); // 2000 milliseconds delay 
+                        }
+                            } else {
+                                // Handle error
+                                console.error("Error:", xhr.statusText);
+                            }
+                };
+                xhr.onerror = function () {
+                    console.error("Request failed.");
+                };
+
+                // Send form data
+                xhr.send(formData);
+            }
+        </script>
+    </main>
+    <footer class="govuk-footer" role="contentinfo">
+        <!-- Footer content here -->
+    </footer>
+</body>
+</html>

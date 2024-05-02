@@ -1,0 +1,39 @@
+<!-- W1863171 - Chloe Carson -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Login - Westminster GP Surgery</title>
+    <link rel="stylesheet" href="css/govuk-frontend-5.3.1.min.css">
+</head>
+<body class="govuk-template__body">
+    <header class="govuk-header" role="banner" data-module="header">
+        <div class="govuk-header__container govuk-width-container">
+            <div class="govuk-header__logo">
+                <a href="index.html" class="govuk-header govuk-header__link--homepage">
+                    <span class="govuk-header__logotype">
+                        <img src="assets/images/govuk-icon-180.png" alt="GOV.UK">
+                    </span>
+                    <span class="govuk-header__logotype-text">Westminster GP Surgery</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+        <div class="govuk-width-container">
+                    <h1 class="govuk-heading-xl">Doctor Login</h1>
+                    <!-- Doctor login form -->
+                    <form class="govuk-form" action="backend/doctorlogin.php" method="post">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="username">Username</label>
+                            <input class="govuk-input" id="username" name="username" type="text" required>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="password">Password</label>
+                            <input class="govuk-input" id="password" name="password" type="password" required>
+                        </div>
+                        <button class="govuk-button" type="submit">Login</button>
+                    </form>
+        </div>
+    
